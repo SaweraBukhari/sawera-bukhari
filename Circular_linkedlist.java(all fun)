@@ -1,0 +1,151 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package circular_linkedlist;
+
+/**
+ *
+ * @author sawera bukhari
+ */
+class Node{
+    int data;
+    Node next;
+public Node(int data){
+    this.data=data;
+}
+    
+}
+
+public class Circular_linkedlist {
+    public Node head=null;
+    public Node tail=null;
+    public void insert(int data){
+         Node node=new Node(data);
+    if(head==null){
+        head=node;
+        tail=node;
+        node.next=head;
+
+    else{
+        tail.next=node;
+        tail=node;    }
+
+        tail.next=head;
+    }
+   
+}
+    public void display(){
+        Node temp=head;
+        if(head==null){
+            
+            System.out.println("list is empty");        }
+        else{
+            do{
+                System.out.println(temp.data);
+temp=temp.next;
+
+            }
+            while(temp!=head);
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Circular_linkedlist list=new Circular_linkedlist();
+        System.out.println("display the list");
+        list.insert(2);
+            list.insert(3);
+                list.insert(4);
+                    list.insert(5);
+                        list.insert(6);
+                            list.insert(7);
+        list.insertatstart(23);
+        list.insertatlast(2000);
+        list.insertatpos(3, 3000);
+        list.display();
+        System.out.println("show the updated list+delete at first");
+        list.deleteatfirst();
+        list.display();
+         System.out.println("show the updated list+delete at last");
+         list.deleteatlast();
+        list.display();
+        
+    }
+    
+
+public void insertatstart(int data){
+Node node=new Node(data);
+Node temp=head;
+node.next=temp;
+head=node;
+tail.next=node;
+
+}
+public void insertatlast(int data){
+    Node node=new Node(data);
+    if(head==null){
+        head=node;
+        tail=node;
+        node.next=head;
+        
+    }
+    else{
+        
+            
+        
+        tail.next=node;
+        tail=node;
+        tail.next=head;
+        
+    }
+        
+}
+public void insertatpos(int val,int index){
+    Node node=new Node(val);
+    if(index==0){
+        insert(val);
+    }
+    else{
+        Node temp=head;
+        for(int i=0;i<index-1;i++){
+            temp=temp.next;
+        }
+        temp.next=node;
+        node.next=tail;
+        tail.next=head;
+       
+    }
+}
+
+public void deleteatfirst(){
+    Node temp=head;
+ 
+        temp=temp.next;
+        head=temp;
+       
+    tail.next=temp;
+}
+public void deleteatlast(){
+    Node prev=null;
+    Node temp=head;
+    if(temp==null){
+        head=temp;
+        System.out.println("node doesn't found:");
+    }
+    else{
+        do{
+            prev=temp;
+            temp=temp.next;
+            
+        }
+        while(temp.next!=head);
+        prev.next=head;
+    }
+}
+}
+
